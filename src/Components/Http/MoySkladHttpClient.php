@@ -30,7 +30,7 @@ class MoySkladHttpClient{
         $this->login = $login;
         $this->password = $password;
         $this->posToken = $posToken;
-        $this->endpoint = "https://" . $subdomain . ".moysklad.ru/api/remap/1.1/";
+        $this->endpoint = "https://" . $subdomain . ".moysklad.ru/api/remap/1.2/";
     }
 
     public function setPosToken($posToken){
@@ -231,9 +231,11 @@ class MoySkladHttpClient{
             if ( $e instanceof ClientException){
                 $req = $reqLog['req'];
                 $res = $e->getResponse()->getBody()->getContents();
+                file_put_contents('log.txt', json_encode($res));
                 $except = new RequestFailedException($req, $res);
                 if ( $res = \json_decode($res) ){
                     if ( isset($res->errors) || (is_array($res) && isset($res[0]->errors))){
+                        var_dump($res);
                         $except = new ApiResponseException($req, $res);
                     }
                 }

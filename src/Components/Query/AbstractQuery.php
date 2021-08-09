@@ -11,6 +11,8 @@ use MoySklad\Lists\EntityList;
 use MoySklad\MoySklad;
 use MoySklad\Registers\ApiUrlRegistry;
 use MoySklad\Traits\AccessesSkladInstance;
+use Moysklad\Entities\Context\CompanySettings;
+use Moysklad\Entities\Context\UserSettings;
 
 abstract class AbstractQuery{
     use AccessesSkladInstance;
@@ -160,10 +162,20 @@ abstract class AbstractQuery{
         /**
          * @var EntityList $resultingObjects
          */
+
+        if (!isset($res->rows)) {
+            $res->rows = [];
+        }
+
         $resultingObjects = (new static::$entityListClass($this->getSkladInstance(), $res->rows, $resultingMeta))
             ->map(function($e) {
                 return new $this->entityClass($this->getSkladInstance(), $e);
             });
+
+        if (!isset($resultingMeta->size)){
+            $resultingMeta->size = 0;
+        }
+
         if ( $resultingMeta->size > $queryParams->limit + $queryParams->offset ){
             $newQueryParams = $this->recreateQuerySpecs($queryParams);
             if ( $queryParams->maxResults === 0 || $queryParams->maxResults > $requestCounter * $queryParams->limit ){

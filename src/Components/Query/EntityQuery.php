@@ -27,6 +27,14 @@ class EntityQuery extends AbstractQuery {
         return new $this->entityClass($this->getSkladInstance(), $res);
     }
 
+    public function get(){
+        $res = $this->getSkladInstance()->getClient()->get(
+            ApiUrlRegistry::instance()->getContextUrl($this->entityName),
+            $this->requestOptions
+        );
+        return new $this->entityClass($this->getSkladInstance(), $res);
+    }
+
 	/**
 	 * Get entity by syncid
 	 * @param $id

@@ -7,6 +7,8 @@ use MoySklad\Entities\Account;
 use MoySklad\Entities\Assortment;
 use MoySklad\Entities\Audit\Audit;
 use MoySklad\Entities\Audit\AuditEvent;
+use MoySklad\Entities\Context\CompanySettings;
+use MoySklad\Entities\Context\UserSettings;
 use MoySklad\Entities\Cashier;
 use MoySklad\Entities\ContactPerson;
 use MoySklad\Entities\Contract;
@@ -76,7 +78,6 @@ use MoySklad\Entities\Folders\ProductFolder;
 use MoySklad\Entities\Group;
 use MoySklad\Entities\Misc\Attribute;
 use MoySklad\Entities\Misc\Characteristics;
-use MoySklad\Entities\Misc\CompanySettings;
 use MoySklad\Entities\Misc\CustomEntity;
 use MoySklad\Entities\Misc\Publication;
 use MoySklad\Entities\Misc\State;
@@ -190,6 +191,8 @@ class EntityRegistry extends AbstractSingleton{
         PriceListRow::class,
         Audit::class,
         AuditEvent::class,
+        CompanySettings::class,
+        UserSettings::class,
         ProcessingPlanMaterial::class,
         ProcessingPlanProduct::class,
         ProcessingProduct::class,

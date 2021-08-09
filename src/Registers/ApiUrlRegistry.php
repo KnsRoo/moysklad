@@ -95,6 +95,14 @@ class ApiUrlRegistry extends AbstractSingleton {
         return "audit/";
     }
 
+    public function getContextUrl($entityName){
+        return 'context/' . $entityName;
+    }
+
+    public function getContextMetadataUrl($entityName){
+        return 'context/' . $entityName . '/metadata';
+    }
+
     public function getAuditEventsUrl($auditId){
         return "audit/" . $auditId . "/events";
     }

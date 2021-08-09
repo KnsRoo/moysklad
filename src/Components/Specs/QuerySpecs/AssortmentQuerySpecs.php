@@ -9,7 +9,7 @@ class AssortmentQuerySpecs extends QuerySpecs {
         $res['stockstore'] = null;
         $res['stockmoment'] = null;
         $res['scope'] = null;
-        $res['stockmode'] = null;
+        $res['quantityMode'] = null;
         return $res;
     }
 }
