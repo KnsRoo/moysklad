@@ -105,6 +105,11 @@ class EntityList implements \JsonSerializable, \ArrayAccess, \IteratorAggregate,
         return new static($this->getSkladInstance(), array_filter($this->items, $cb));
     }
 
+    public function find(callable $cb){
+        $items = array_filter($this->items, $cb);
+        return array_pop($items);
+    }
+
     /**
      * @see array_reduce
      * @param callable $cb
@@ -227,6 +232,10 @@ class EntityList implements \JsonSerializable, \ArrayAccess, \IteratorAggregate,
      */
     public function count(){
         return count($this->items);
+    }
+
+    public function isEmpty(){
+        return $this->count() == 0;
     }
 
     /**

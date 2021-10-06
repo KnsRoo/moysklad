@@ -26,11 +26,13 @@ class QuerySpecs extends AbstractSpecs {
             "limit" => static::MAX_LIST_LIMIT,
             "offset" => 0,
             "maxResults" => 0,
+            "id" => null,
             "expand" => null,
             "updatedFrom" => null,
             "updatedTo" => null,
             "updatedBy" => null,
             "order" => null,
+            "filter" => null
         ];
     }
 

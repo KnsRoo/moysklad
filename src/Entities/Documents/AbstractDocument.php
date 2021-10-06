@@ -155,7 +155,8 @@ class AbstractDocument extends AbstractEntity{
      * @return EntityList
      */
     public function getExportEmbeddedTemplates(QuerySpecs $querySpecs = null){
-        $res = EmbeddedTemplate::query($this->getSkladInstance(), $querySpecs)
+        $ms = $this->getSkladInstance();
+        $res = EmbeddedTemplate::query($ms, $querySpecs)
             ->setCustomQueryUrl(ApiUrlRegistry::instance()->getMetadataExportEmbeddedTemplateUrl(static::$entityName))
             ->getList();
         return $res;
@@ -166,7 +167,8 @@ class AbstractDocument extends AbstractEntity{
      * @return EntityList
      */
     public function getExportCustomTemplates(QuerySpecs $querySpecs = null){
-        $res = CustomTemplate::query($this->getSkladInstance(), $querySpecs)
+        $ms = $this->getSkladInstance();
+        $res = CustomTemplate::query($ms, $querySpecs)
             ->setCustomQueryUrl(ApiUrlRegistry::instance()->getMetadataExportCustomTemplateUrl(static::$entityName))
             ->getList();
         return $res;
